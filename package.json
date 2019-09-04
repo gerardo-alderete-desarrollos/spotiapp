@@ -1,4 +1,10 @@
 {
   "name": "",
-  "version": ""
+  "version": "",
+  "dependencies": {
+    "@angular/animations": "^8.2.4",
+    "@angular/cdk": "^8.1.4",
+    "@angular/material": "^8.1.4",
+    "hammerjs": "^2.0.8"
+  }
 }
