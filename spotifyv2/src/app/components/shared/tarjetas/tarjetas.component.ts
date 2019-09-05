@@ -29,4 +29,13 @@ export class TarjetasComponent implements OnInit {
 
   }
 
+  agregarListaReporduccion(item) {
+    console.log('listaReproduccion');
+    console.log({item});
+  }
+  abrirDetalles(item) {
+    console.log('Abrir detalles');
+    console.log({item});
+  }
+
 }

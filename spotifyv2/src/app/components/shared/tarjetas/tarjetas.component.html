@@ -1,9 +1,22 @@
 <div class="row justify-content-center">
-    <mat-card class="example-card m-5 animated fadeIn" *ngFor="let item of items" (click)="verArtista(item)">
+    <mat-card class="example-card m-5 animated fadeIn" *ngFor="let item of items">
         <mat-card-header>
             <mat-card-title>{{ item.name }}</mat-card-title>
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="mat-menu-custome">
+                    <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="agregarListaReporduccion(item)">
+                      <mat-icon>add</mat-icon>
+                      <span>Agregar a lista de reproduccion</span>
+                </button>
+                <button mat-menu-item (click)="abrirDetalles(item)">
+                      <mat-icon>details</mat-icon>
+                      <span>Detalles</span>
+                </button>
+            </mat-menu>
         </mat-card-header>
-        <img mat-card-image [defaultImage]="defaultImage" [lazyLoad]="item.images | noimage" class="card-img-top" alt="...">
+        <img mat-card-image [defaultImage]="defaultImage" [lazyLoad]="item.images | noimage" class="card-img-top puntero" alt="..." (click)="verArtista(item)">
         <mat-card-content>
             <span *ngFor="let artista of item.artists" class="badge badge-primary text-white">
                 {{ artista.name }}

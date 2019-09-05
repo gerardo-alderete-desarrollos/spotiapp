@@ -70,3 +70,8 @@ hr {
 .align-content-custom {
     margin-top: 93px !important;
 }
+
+button:focus {
+    outline: none;
+    background-color: white;
+}
