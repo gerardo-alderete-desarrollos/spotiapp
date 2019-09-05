@@ -1,0 +1,14 @@
+<div class="row justify-content-center">
+    <mat-card class="example-card m-5 animated fadeIn" *ngFor="let item of items" (click)="verArtista(item)">
+        <mat-card-header>
+            <mat-card-title>{{ item.name }}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image [defaultImage]="defaultImage" [lazyLoad]="item.images | noimage" class="card-img-top" alt="...">
+        <mat-card-content>
+            <span *ngFor="let artista of item.artists" class="badge badge-primary text-white">
+                {{ artista.name }}
+            </span>
+        </mat-card-content>
+    </mat-card>
+
+</div>

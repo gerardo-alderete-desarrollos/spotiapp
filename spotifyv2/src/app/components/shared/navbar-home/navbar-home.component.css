@@ -1,0 +1,7 @@
+.nav-home-fixed {
+    position: fixed;
+    top: 61px;
+    right: 0px;
+    z-index: 100;
+    margin-bottom: 100px !important;
+}

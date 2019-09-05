@@ -1,0 +1,19 @@
+<div class="m-3 nav-home-fixed mr-5">
+    <div class="row justify-content-end mb-3">
+        <a class="mr-2" mat-fab routerLink="." color="primary" [routerLink]="['/home/top']" routerLinkActive="router-link-active">Top</a>
+        <a mat-fab routerLink="." color="warn">Other</a>
+    </div>
+    <div>
+        <form [formGroup]="formGroup" novalidate class="pt-3 px-4 white">
+
+            <mat-form-field>
+                <mat-label>Cantidad a mostrar</mat-label>
+                <mat-select formControlName="limits" (selectionChange)="seleccionado($event)">
+                    <mat-option *ngFor="let limit of limits" [value]="limit.value">
+                        {{limit.value}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+    </div>
+</div>

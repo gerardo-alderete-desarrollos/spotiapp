@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+
+<app-loading *ngIf="loading"></app-loading>
+
+<div class="alert alert-danger animated fadeIn" *ngIf="error">
+    <h3>Error</h3>
+    <p>{{ mensajeError }}</p>
+</div>
+
+<app-navbar-home *ngIf="isHome"></app-navbar-home>
+
+<div class="container m-5">
+    <router-outlet></router-outlet>
+</div>
