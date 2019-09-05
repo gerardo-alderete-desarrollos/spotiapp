@@ -9,6 +9,8 @@ import { NavbarHomeComponent } from './navbar-home/navbar-home.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LazyLoadImageModule, intersectionObserverPreset } from 'ng-lazyload-image';
+import { ModalBottomComponent } from './modal-bottom/modal-bottom.component';
+import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { LazyLoadImageModule, intersectionObserverPreset } from 'ng-lazyload-ima
     LoadingComponent,
     NavbarComponent,
     TarjetasComponent,
-    NavbarHomeComponent
+    NavbarHomeComponent,
+    ModalBottomComponent,
+    ModalDialogComponent
   ],
   imports: [
     MaterialModule,
@@ -36,6 +40,10 @@ import { LazyLoadImageModule, intersectionObserverPreset } from 'ng-lazyload-ima
     TarjetasComponent,
     NavbarHomeComponent
 
+  ],
+  entryComponents: [
+    ModalBottomComponent,
+    ModalDialogComponent
   ]
 })
 export class SharedModule { }
