@@ -163,15 +163,17 @@ export class HomeService {
    };
 
    return  new Promise( (res, rej) => {
-    this.http.post( baseBack + token, body ).subscribe(
+    this.sendIsLoading(true);
+    this.modalController.closeSnackBar();
+    this.http.post( baseBack + token , body ).subscribe(
       data => {
        this.token = data['body'].access_token;
-      //  this.sendHandleError(false);
-
+       this.sendIsLoading(false);
        res(data);
       },
       error => {
-        // this.sendHandleError(true, error);
+        this.sendIsLoading(false);
+        this.modalController.openSnackBar(SnackBarErrorComponent, error.message);
        rej(error);
       }
     );
@@ -185,18 +187,20 @@ export class HomeService {
     password : password,
    };
   return  new Promise( (res, rej) => {
+    this.sendIsLoading(true);
+    this.modalController.closeSnackBar();
     this.http.post( baseBack + login, body ).subscribe(
       ( data: any ) => {
         console.log('isAuth');
        this.utilities.setToken(data.token);
        this.utilities.setCurrentUser(data.usuario);
        this.utilities.login();
-      //  this.sendHandleError(false);
-
+       this.sendIsLoading(false);
        res(data);
       },
       error => {
-        // this.sendHandleError(true, error);
+        this.sendIsLoading(false);
+        this.modalController.openSnackBar(SnackBarErrorComponent, error.error.mensaje);
         this.utilities.setToken('');
        rej(error);
       }
