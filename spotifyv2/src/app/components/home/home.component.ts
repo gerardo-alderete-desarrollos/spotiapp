@@ -17,16 +17,16 @@ export class HomeComponent implements OnInit {
   constructor(private homeService: HomeService) {
     this.loading = true;
     this.error = false;
-    this.homeService.handleError.subscribe(
-      ( response: any ) => {
-        console.log('response', response);
-        if ( response.error ) {
-          this.mensajeError = response.message.message ? response.message.message : response.message;
-          this.error = true;
-          this.loading = false;
-        }
-      }
-    );
+    // this.homeService.handleError.subscribe(
+    //   ( response: any ) => {
+    //     console.log('response', response);
+    //     if ( response.error ) {
+    //       this.mensajeError = response.message.message ? response.message.message : response.message;
+    //       this.error = true;
+    //       this.loading = false;
+    //     }
+    //   }
+    // );
     this.getData();
 
   

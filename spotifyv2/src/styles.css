@@ -84,3 +84,15 @@ button:focus {
 .text-blue:hover {
     color: cadetblue !important;
 }
+
+.mat-snack-bar-container {
+    border-radius: 4px !important;
+    box-sizing: border-box !important;
+    display: block !important;
+    margin: 24px !important;
+    max-width: 85vw !important;
+    min-width: 344px !important;
+    padding: 14px 16px !important;
+    min-height: 48px !important;
+    transform-origin: center !important;
+}

@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LazyLoadImageModule, intersectionObserverPreset } from 'ng-lazyload-image';
 import { ModalBottomComponent } from './modal-bottom/modal-bottom.component';
 import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
+import { SnackBarErrorComponent } from './snack-bar-error/snack-bar-error.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
     NavbarHomeComponent,
     ModalBottomComponent,
     ModalDialogComponent,
+    SnackBarErrorComponent,
   ],
   imports: [
     MaterialModule,
@@ -41,7 +43,8 @@ import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
   ],
   entryComponents: [
     ModalBottomComponent,
-    ModalDialogComponent
+    ModalDialogComponent,
+    SnackBarErrorComponent
   ]
 })
 export class SharedModule { }

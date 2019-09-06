@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatBottomSheet, MatDialog } from '@angular/material';
 import { ModalBottomComponent } from '../modal-bottom/modal-bottom.component';
 import { ModalDialogComponent } from '../modal-dialog/modal-dialog.component';
 import { UtilitiesService } from '../utilities.service';
 import { HomeService } from '../../home/home.service';
+import { ModalControllerService } from '../modal-controller.service';
+import { SnackBarErrorComponent } from '../snack-bar-error/snack-bar-error.component';
 
 @Component({
   selector: 'app-tarjetas',
@@ -16,10 +17,8 @@ export class TarjetasComponent implements OnInit {
 
   @Input() items: any[] = [];
   constructor(private router: Router,
-    private bottomSheet: MatBottomSheet,
-    public dialog: MatDialog,
-    private utilities: UtilitiesService,
-    private homeService: HomeService) { }
+    private modalController: ModalControllerService,
+    private utilities: UtilitiesService) { }
 
   ngOnInit() {
   }
@@ -44,7 +43,7 @@ export class TarjetasComponent implements OnInit {
       console.log('si hay token');
     } else {
       // this.homeService.auth('ge_call@hotmail.com', 'Callofduty92');
-      this.bottomSheet.open(ModalBottomComponent);
+      this.modalController.openModalBottom(ModalBottomComponent);
       console.log('no hay token');
 
 
@@ -52,15 +51,8 @@ export class TarjetasComponent implements OnInit {
 
   }
   abrirDetalles(item) {
-    const dialogRef = this.dialog.open(ModalDialogComponent, {
-      width: '250px',
-      data:  item
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log({result});
-    });
+    this.modalController.openModalDialog(ModalDialogComponent, item);
+    this.modalController.openSnackBar(SnackBarErrorComponent, 'Mensaje');
   }
 
 }

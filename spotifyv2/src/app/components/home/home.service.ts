@@ -4,6 +4,8 @@ import { environment } from '../../../environments/environment';
 import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { UtilitiesService } from '../shared/utilities.service';
+import { ModalControllerService } from '../shared/modal-controller.service';
+import { SnackBarErrorComponent } from '../shared/snack-bar-error/snack-bar-error.component';
 
 // const headers = new HttpHeaders({
 //   'Authorization': `Bearer ${token}`
@@ -25,28 +27,33 @@ import { UtilitiesService } from '../shared/utilities.service';
 })
 export class HomeService {
   token = '';
-  handleError = new  Subject<Object>();
+  // handleError = new  Subject<Object>();
   loading = new Subject<boolean>();
 
   constructor(private http: HttpClient,
-    private utilities: UtilitiesService) { }
+    private utilities: UtilitiesService,
+    private modalController: ModalControllerService
+    ) { }
 
   getNewReleases(limit = environment.config.limit) {
     const headers = this.getHeaders();
 
 
     return new Promise( (res, rej) => {
+      this.sendIsLoading(true);
+      this.modalController.closeSnackBar();
       this.http.get(base + new_realeases + `?limit=${limit}`, { headers })
           .pipe(
             map( data => data['albums'].items)
           )
           .subscribe(
             data => {
-              this.sendHandleError(false);
+              this.sendIsLoading(false);
               res(data);
             },
             error => {
-              this.sendHandleError(true, error.error ? error.error.error : error.message);
+              this.sendIsLoading(false);
+              this.modalController.openSnackBar(SnackBarErrorComponent, error.error ? error.error.error : error.message);
               rej(error);
             });
     });
@@ -56,19 +63,25 @@ export class HomeService {
     const headers = this.getHeaders();
 
     return new Promise( (res, rej) => {
-      this.http.get(base + search + `${ termino }&type=artist`, { headers })
+      this.sendIsLoading(true);
+      this.modalController.closeSnackBar();
+      this.http.get(base + search + `${ termino }s&type=artist`, { headers })
             .pipe(
               map( data =>  data['artists'].items)
             )
             .subscribe(
               data => {
-                this.sendHandleError(false);
-                this.sendIsLoading(true);
+                this.sendIsLoading(false);
+                console.log({data});
+                if ( data.length === 0 ) {
+                  console.log('No se encontro artista con este nombre ', termino);
+                  this.modalController.openSnackBar(SnackBarErrorComponent, 'No se encontro artista con este nombre ' + termino);
+                }
                 res(data);
               },
               error => {
-                this.sendHandleError(true, error.error ? error.error.error : error.message);
-                this.sendIsLoading(true);
+                this.sendIsLoading(false);
+                this.modalController.openSnackBar(SnackBarErrorComponent, error.error ? error.error.error : error.message);
                 rej(error);
               }
             );
@@ -79,16 +92,17 @@ export class HomeService {
     const headers = this.getHeaders();
 
     return new Promise( (res, rej) => {
-      this.http.get(base + artista + id , { headers })
+      this.sendIsLoading(true);
+      this.modalController.closeSnackBar();
+      this.http.get(base + artista + id, { headers })
         .subscribe(
           data => {
-            this.sendHandleError(false);
-            this.sendIsLoading(true);
+            this.sendIsLoading(false);
             res(data);
           },
           error => {
-            this.sendHandleError(true, error.error ? error.error.error : error.message);
-            this.sendIsLoading(true);
+            this.sendIsLoading(false);
+            this.modalController.openSnackBar(SnackBarErrorComponent, error.error ? error.error.error : error.message);
             rej(error);
           });
     });
@@ -98,18 +112,19 @@ export class HomeService {
     const headers = this.getHeaders();
 
     return new Promise( (res, rej) => {
-      this.http.get(base + artista + id + top_tracks , { headers })
+      this.sendIsLoading(true);
+      this.modalController.closeSnackBar();
+      this.http.get(base + artista + id + top_tracks  , { headers })
             .pipe(
               map( data =>  data['tracks'])
             ).subscribe(
               data => {
-                this.sendHandleError(false);
-                this.sendIsLoading(true);
+                this.sendIsLoading(false);
                 res(data);
               },
               error => {
-                this.sendHandleError(true, error.error ? error.error.error : error.message);
-                this.sendIsLoading(true);
+                this.sendIsLoading(false);
+                this.modalController.openSnackBar(SnackBarErrorComponent, error.error ? error.error.error : error.message);
                 rej(error);
               });
     });
@@ -119,21 +134,22 @@ export class HomeService {
     const headers = this.getHeaders();
 
     return new Promise( (res, rej) => {
+      this.sendIsLoading(true);
+      this.modalController.closeSnackBar();
       this.http.get(base + 'albums'   , { headers })
             .pipe(
               // map( data =>  data['tracks'])
             ).subscribe(
               data => {
                 console.log({data});
-                this.sendHandleError(false);
-                this.sendIsLoading(true);
+                this.sendIsLoading(false);
                 res(data);
               },
               error => {
                 console.log({error});
 
-                this.sendHandleError(true, error.error ? error.error.error : error.message);
-                this.sendIsLoading(true);
+                this.sendIsLoading(false);
+                this.modalController.openSnackBar(SnackBarErrorComponent, error.error ? error.error.error : error.message);
                 rej(error);
               });
     });
@@ -150,12 +166,12 @@ export class HomeService {
     this.http.post( baseBack + token, body ).subscribe(
       data => {
        this.token = data['body'].access_token;
-       this.sendHandleError(false);
+      //  this.sendHandleError(false);
 
        res(data);
       },
       error => {
-        this.sendHandleError(true, error);
+        // this.sendHandleError(true, error);
        rej(error);
       }
     );
@@ -175,12 +191,12 @@ export class HomeService {
        this.utilities.setToken(data.token);
        this.utilities.setCurrentUser(data.usuario);
        this.utilities.login();
-       this.sendHandleError(false);
+      //  this.sendHandleError(false);
 
        res(data);
       },
       error => {
-        this.sendHandleError(true, error);
+        // this.sendHandleError(true, error);
         this.utilities.setToken('');
        rej(error);
       }
@@ -194,12 +210,12 @@ export class HomeService {
      });
  }
 
- sendHandleError( error: boolean , message: string = '' ) {
-   this.handleError.next({
-     error: error,
-     message: message
-   });
- }
+//  sendHandleError( error: boolean , message: string = '' ) {
+//    this.handleError.next({
+//      error: error,
+//      message: message
+//    });
+//  }
 
  sendIsLoading( isLoading: boolean ) {
   console.log({isLoading});

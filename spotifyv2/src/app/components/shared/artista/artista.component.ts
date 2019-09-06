@@ -36,15 +36,15 @@ export class ArtistaComponent implements OnInit {
     this.lastRoute = this.utilities.getLastRout();
     console.log('lastRoute', this.lastRoute);
 
-    this.homeService.handleError.subscribe(
-      ( response: any ) => {
-        if ( response.error ) {
-          this.mensajeError = response.message.message ? response.message.message : response.message;
-          this.error = true;
-          this.loading = false;
-        }
-      }
-    );
+    // this.homeService.handleError.subscribe(
+    //   ( response: any ) => {
+    //     if ( response.error ) {
+    //       this.mensajeError = response.message.message ? response.message.message : response.message;
+    //       this.error = true;
+    //       this.loading = false;
+    //     }
+    //   }
+    // );
    }
 
   ngOnInit() {

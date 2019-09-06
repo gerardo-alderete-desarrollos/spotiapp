@@ -32,18 +32,18 @@ export class AppComponent {
     }
   });
 
-  this.homeService.handleError.subscribe(
-    ( response: any ) => {
-      if ( response.error ) {
-        this.mensajeError = response.message.message ? response.message.message : response.message;
-        this.error = true;
-        this.loading = false;
-      } else {
-        this.error = false;
-        this.loading = false;
-      }
-    }
-  );
+  // this.homeService.handleError.subscribe(
+  //   ( response: any ) => {
+  //     if ( response.error ) {
+  //       this.mensajeError = response.message.message ? response.message.message : response.message;
+  //       this.error = true;
+  //       this.loading = false;
+  //     } else {
+  //       this.error = false;
+  //       this.loading = false;
+  //     }
+  //   }
+  // );
 
   this.homeService.loading.subscribe(
     isLoading => {

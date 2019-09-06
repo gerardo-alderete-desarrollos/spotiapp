@@ -4,6 +4,7 @@ import { UtilitiesService } from '../utilities.service';
 import { Router } from '@angular/router';
 import { MatBottomSheet } from '@angular/material';
 import { ModalBottomComponent } from '../modal-bottom/modal-bottom.component';
+import { ModalControllerService } from '../modal-controller.service';
 
 @Component({
   selector: 'app-navbar-home',
@@ -28,8 +29,7 @@ export class NavbarHomeComponent implements OnInit {
   constructor( fb: FormBuilder,
     private utilities: UtilitiesService,
     private router: Router,
-    private bottomSheet: MatBottomSheet,
-
+    private modalController: ModalControllerService
     ) {
       this.formGroup = fb.group({
         'limits' : [10, Validators.required ]}
@@ -82,7 +82,8 @@ export class NavbarHomeComponent implements OnInit {
           break;
       }
     } else {
-      this.bottomSheet.open(ModalBottomComponent);
+      // this.bottomSheet.open(ModalBottomComponent);
+      this.modalController.openModalBottom(ModalBottomComponent);
       console.log('no hay token');
     }
 
