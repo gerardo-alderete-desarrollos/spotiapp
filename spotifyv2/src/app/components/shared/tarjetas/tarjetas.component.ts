@@ -36,7 +36,7 @@ export class TarjetasComponent implements OnInit {
 
     this.router.navigate(['/artista', artistaId]);
 
-  }
+  } 
 
   agregarListaReporduccion(item) {
     if ( this.utilities.getToken() && this.utilities.getToken() !== '' ) {

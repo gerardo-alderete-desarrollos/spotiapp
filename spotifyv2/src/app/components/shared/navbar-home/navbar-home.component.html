@@ -5,17 +5,17 @@
                 new_releases
             </mat-icon>
         </a>
-        <a class="mr-2" mat-fab color="warn" [routerLink]="['/home/lista-reproduccion']" routerLinkActive="active" matTooltip="Listas de reproduccion">
+        <a class="mr-2" mat-fab color="warn" (click)="listaReproduccion()" routerLinkActive="active" matTooltip="Listas de reproduccion">
             <mat-icon>
                 list
             </mat-icon>
         </a>
-        <a class="mr-2" mat-fab color="accent" [routerLink]="['/home/lista-albums']" routerLinkActive="active" matTooltip="Albums favoritos">
+        <a class="mr-2" mat-fab color="accent" (click)="listaAlbums()" routerLinkActive="active" matTooltip="Albums favoritos">
             <mat-icon>
                 album
             </mat-icon>
         </a>
-        <a class="mr-2" mat-fab color="white" [routerLink]="['/home/lista-artistas']" routerLinkActive="active" matTooltip="Artistas favoritos">
+        <a class="mr-2" mat-fab color="white" (click)="listaArtistas()" routerLinkActive="active" matTooltip="Artistas favoritos">
             <mat-icon>
                 art_track
             </mat-icon>

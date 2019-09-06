@@ -1,6 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UtilitiesService } from '../utilities.service';
+import { Router } from '@angular/router';
+import { MatBottomSheet } from '@angular/material';
+import { ModalBottomComponent } from '../modal-bottom/modal-bottom.component';
 
 @Component({
   selector: 'app-navbar-home',
@@ -23,7 +26,10 @@ export class NavbarHomeComponent implements OnInit {
     {value: 50},
   ];
   constructor( fb: FormBuilder,
-    private utilities: UtilitiesService
+    private utilities: UtilitiesService,
+    private router: Router,
+    private bottomSheet: MatBottomSheet,
+
     ) {
       this.formGroup = fb.group({
         'limits' : [10, Validators.required ]}
@@ -36,6 +42,51 @@ export class NavbarHomeComponent implements OnInit {
   seleccionado( limit ) {
     console.log(limit.value);
     this.utilities.sendLimits(limit.value);
+  }
+
+  listaReproduccion() {
+    console.log('listaReproduccion');
+    this.isLoging(1);
+
+  }
+  listaAlbums() {
+    console.log('listaAlbums');
+    this.isLoging(2);
+
+  }
+  listaArtistas() {
+    console.log('listaArtistas')  ;
+    this.isLoging(3);
+  }
+  isLoging( reditectTo: number ) {
+    if ( this.utilities.getToken() && this.utilities.getToken() !== '' ) {
+      // Aqui ira el servico para agregar a lista de reproduccion
+      console.log('si hay token');
+      // return true;
+      switch (reditectTo) {
+        case 1:
+        console.log('redirectTo:'  + reditectTo);
+              this.router.navigateByUrl('/home/lista-reproduccion');
+
+          break;
+        case 2:
+        console.log('redirectTo:'  + reditectTo);
+              this.router.navigateByUrl('/home/lista-albums');
+
+          break;
+        case 3:
+        console.log('redirectTo:'  + reditectTo);
+              this.router.navigateByUrl('/home/lista-artistas');
+          break;
+        default:
+          break;
+      }
+    } else {
+      this.bottomSheet.open(ModalBottomComponent);
+      console.log('no hay token');
+    }
+
+
   }
 
 }
