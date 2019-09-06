@@ -35,10 +35,8 @@ export class NavbarComponent implements OnInit {
     public utilitiesService: UtilitiesService
   ) {
     this.isLogin = this.utilitiesService.getCurrentUser() === '' && this.utilitiesService.getToken() === '' ? false : true;
-    console.log('isLogin start', this.isLogin);
     this.utilitiesService.isLogin.subscribe(
       isLogin => {
-        console.log({isLogin});
         this.isLogin = isLogin;
       }
     );
@@ -48,7 +46,6 @@ export class NavbarComponent implements OnInit {
   }
 
   cerrarSesion()  {
-    console.log('cerrar sesion');
     this.utilitiesService.logout();
   }
   settingsUsuario()  {

@@ -74,9 +74,7 @@ export class HomeService {
             .subscribe(
               data => {
                 this.sendIsLoading(false);
-                console.log({data});
                 if ( data.length === 0 ) {
-                  console.log('No se encontro artista con este nombre ', termino);
                   this.modalController.openSnackBar(SnackBarErrorComponent, 'No se encontro artista con este nombre ' + termino);
                 }
                 res(data);
@@ -193,7 +191,6 @@ export class HomeService {
     this.modalController.closeSnackBar();
     this.http.post( baseBack + login, body ).subscribe(
       ( data: any ) => {
-        console.log('isAuth');
        this.utilities.setToken(data.token);
        this.utilities.setCurrentUser(data.usuario);
        this.utilities.login();
@@ -211,14 +208,11 @@ export class HomeService {
  }
  
  signIn( user ) {
-   console.log({user});
   return  new Promise( (res, rej) => {
     this.sendIsLoading(true);
     this.modalController.closeSnackBar();
     this.http.post( baseBack + usuario, user ).subscribe(
       ( data: any ) => {
-        console.log('isSignIn');
-        console.log({data});
        this.sendIsLoading(false);
        if ( data.ok ) {
           this.modalController.openSnackBar( SnackBarSuccesComponent , data.usuario.nombre );
@@ -241,15 +235,7 @@ export class HomeService {
      });
  }
 
-//  sendHandleError( error: boolean , message: string = '' ) {
-//    this.handleError.next({
-//      error: error,
-//      message: message
-//    });
-//  }
-
  sendIsLoading( isLoading: boolean ) {
-  console.log({isLoading});
   this.loading.next(isLoading);
  }
 

@@ -6,6 +6,12 @@
     margin-bottom: 100px !important;
 }
 
+.width-form-top {
+    position: absolute;
+    top: 64px;
+    right: -9px;
+}
+
 @media screen and ( max-width: 1397px) {
     .width-select-top {
         width: 107px !important;
@@ -14,6 +20,7 @@
         right: -8px;
         position: absolute;
         width: 155px;
+        top: 66px;
     }
 }
 

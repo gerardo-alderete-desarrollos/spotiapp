@@ -27,23 +27,9 @@ export class AppComponent {
       this.error = false;
     router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
-        console.log(event.url);
         this.activarNavMenu(event.url);
     }
   });
-
-  // this.homeService.handleError.subscribe(
-  //   ( response: any ) => {
-  //     if ( response.error ) {
-  //       this.mensajeError = response.message.message ? response.message.message : response.message;
-  //       this.error = true;
-  //       this.loading = false;
-  //     } else {
-  //       this.error = false;
-  //       this.loading = false;
-  //     }
-  //   }
-  // );
 
   this.homeService.loading.subscribe(
     isLoading => {
