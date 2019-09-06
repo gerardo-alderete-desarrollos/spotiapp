@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { UtilitiesService } from '../shared/utilities.service';
 import { ModalControllerService } from '../shared/modal-controller.service';
 import { SnackBarErrorComponent } from '../shared/snack-bar-error/snack-bar-error.component';
+import { SnackBarSuccesComponent } from '../shared/snack-bar-succes/snack-bar-succes.component';
 
 // const headers = new HttpHeaders({
 //   'Authorization': `Bearer ${token}`
@@ -20,6 +21,7 @@ import { SnackBarErrorComponent } from '../shared/snack-bar-error/snack-bar-erro
  const baseBack = environment.urls_back.base ;
  const token = environment.urls_back.token;
  const login = environment.urls_back.login;
+ const usuario = environment.urls_back.usuario;
 
 
 @Injectable({
@@ -202,6 +204,31 @@ export class HomeService {
         this.sendIsLoading(false);
         this.modalController.openSnackBar(SnackBarErrorComponent, error.error.mensaje);
         this.utilities.setToken('');
+       rej(error);
+      }
+    );
+   });
+ }
+ 
+ signIn( user ) {
+   console.log({user});
+  return  new Promise( (res, rej) => {
+    this.sendIsLoading(true);
+    this.modalController.closeSnackBar();
+    this.http.post( baseBack + usuario, user ).subscribe(
+      ( data: any ) => {
+        console.log('isSignIn');
+        console.log({data});
+       this.sendIsLoading(false);
+       if ( data.ok ) {
+          this.modalController.openSnackBar( SnackBarSuccesComponent , data.usuario.nombre );
+          this.auth(user.email, user.password);
+       }
+       res(data);
+      },
+      error => {
+        this.sendIsLoading(false);
+        this.modalController.openSnackBar(SnackBarErrorComponent, error.error.mensaje);
        rej(error);
       }
     );

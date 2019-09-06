@@ -32,7 +32,7 @@ import { UtilitiesService } from '../utilities.service';
 export class NavbarComponent implements OnInit {
   isLogin = false;
   constructor(
-    private utilitiesService: UtilitiesService
+    public utilitiesService: UtilitiesService
   ) {
     this.isLogin = this.utilitiesService.getCurrentUser() === '' && this.utilitiesService.getToken() === '' ? false : true;
     console.log('isLogin start', this.isLogin);

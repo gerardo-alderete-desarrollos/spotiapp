@@ -2,16 +2,15 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_SNACK_BAR_DATA } from '@angular/material';
 
 @Component({
-  selector: 'app-snack-bar-error',
-  templateUrl: './snack-bar-error.component.html',
-  styleUrls: ['./snack-bar-error.component.css']
+  selector: 'app-snack-bar-succes',
+  templateUrl: './snack-bar-succes.component.html',
+  styleUrls: ['./snack-bar-succes.component.css']
 })
-export class SnackBarErrorComponent implements OnInit { 
+export class SnackBarSuccesComponent implements OnInit {
 
   constructor(
     @Inject(MAT_SNACK_BAR_DATA) public data
-  ) {
-   }
+  ) { }
 
   ngOnInit() {
   }

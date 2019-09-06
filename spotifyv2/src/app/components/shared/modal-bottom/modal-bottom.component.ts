@@ -21,6 +21,7 @@ export class ModalBottomComponent  {
     private homeService: HomeService) {
       this.formGroup = fb.group(
         {
+        'nombre': ['',  ],
         'email' : ['', Validators.required ],
         'password': ['', Validators.required ]
       });
@@ -32,11 +33,13 @@ export class ModalBottomComponent  {
   }
   login() {
     const { email , password } = this.formGroup.value;
-    console.log('login');
-    console.log({ email , password });
     this.homeService.auth( email, password);
     this.bottomSheetRef.dismiss();
 
+  }
+  signIn() {
+    this.homeService.signIn( this.formGroup.value );
+    this.bottomSheetRef.dismiss();
   }
   enter() {
     console.log('enter');

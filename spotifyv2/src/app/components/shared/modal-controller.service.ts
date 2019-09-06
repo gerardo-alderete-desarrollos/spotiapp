@@ -11,7 +11,7 @@ export class ModalControllerService {
     private snackBar: MatSnackBar
     ) { }
 
-  openModalBottom( Component ) {
+  openModalBottom( Component ) { 
     this.bottomSheet.open( Component );
   }
   openModalDialog( Component, item ) {

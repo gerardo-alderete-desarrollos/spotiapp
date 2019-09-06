@@ -21,8 +21,6 @@ export class UtilitiesService {
     localStorage.setItem('token', token);
   }
   getCurrentUser() {
-
-    console.log('currentUser', localStorage.getItem('currentUser'));
     if ( localStorage.getItem('currentUser')) {
 
       return JSON.parse(localStorage.getItem('currentUser'));
@@ -30,7 +28,6 @@ export class UtilitiesService {
     return false;
   }
   setCurrentUser( currentUser: string ) {
-    console.log({currentUser});
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
   }
 

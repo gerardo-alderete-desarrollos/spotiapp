@@ -17,6 +17,10 @@
     <button mat-flat-button class="button-back" (click)="isSelect = false; isLogin = false; isSignin = false;">
             <mat-icon aria-label="Example icon-button with a heart icon" class="icon-back">chevron_left</mat-icon>
         </button>
+    <mat-form-field *ngIf="isSignin">
+        <input matInput placeholder="Ingresa el usuario" formControlName="nombre">
+        <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+    </mat-form-field>
     <mat-form-field>
         <input matInput placeholder="Ingresa el email" formControlName="email" required>
         <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
@@ -26,5 +30,5 @@
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </mat-form-field>
     <button mat-raised-button color="primary" class="mt-4" *ngIf="isLogin" (click)="login()">Iniciar Sesion</button>
-    <button mat-raised-button color="primary" class="mt-4" *ngIf="isSignin">Registrarse</button>
+    <button mat-raised-button color="primary" class="mt-4" *ngIf="isSignin" (click)="signIn()">Registrarse</button>
 </form>

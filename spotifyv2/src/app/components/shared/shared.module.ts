@@ -12,6 +12,7 @@ import { LazyLoadImageModule, intersectionObserverPreset } from 'ng-lazyload-ima
 import { ModalBottomComponent } from './modal-bottom/modal-bottom.component';
 import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
 import { SnackBarErrorComponent } from './snack-bar-error/snack-bar-error.component';
+import { SnackBarSuccesComponent } from './snack-bar-succes/snack-bar-succes.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { SnackBarErrorComponent } from './snack-bar-error/snack-bar-error.compon
     ModalBottomComponent,
     ModalDialogComponent,
     SnackBarErrorComponent,
+    SnackBarSuccesComponent,
   ],
   imports: [
     MaterialModule,
@@ -40,11 +42,16 @@ import { SnackBarErrorComponent } from './snack-bar-error/snack-bar-error.compon
     NavbarComponent,
     TarjetasComponent,
     NavbarHomeComponent,
+    ModalBottomComponent,
+    ModalDialogComponent,
+    SnackBarErrorComponent,
+    SnackBarSuccesComponent,
   ],
   entryComponents: [
     ModalBottomComponent,
     ModalDialogComponent,
-    SnackBarErrorComponent
+    SnackBarErrorComponent,
+    SnackBarSuccesComponent
   ]
 })
 export class SharedModule { }

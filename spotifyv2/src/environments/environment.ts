@@ -15,7 +15,8 @@ export const environment = {
   urls_back: {
     base: 'http://localhost:3000/',
     login: 'login',
-    token: 'token'
+    token: 'token',
+    usuario: 'usuario'
   },
   credentials: {
     client_id: 'd6b55734aa3f4b49af89ae8023b6c69e',
