@@ -1,0 +1,28 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container>* {
+    width: 100%;
+}
+
+.options-log {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.button-back {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0px !important;
+    width: 20px !important;
+}
+
+.icon-back {
+    border-radius: 200px 200px 200px 200px !important;
+    background: black !important;
+    color: white;
+}

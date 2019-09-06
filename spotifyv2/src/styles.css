@@ -75,3 +75,12 @@ button:focus {
     outline: none;
     background-color: white;
 }
+
+.text-blue {
+    color: blue !important;
+    text-decoration: underline !important;
+}
+
+.text-blue:hover {
+    color: cadetblue !important;
+}

@@ -1,21 +1,30 @@
-<mat-nav-list>
-    <a href="https://keep.google.com/" mat-list-item (click)="openLink($event)">
-        <span mat-line>Google Keep</span>
-        <span mat-line>Add to a note</span>
-    </a>
+<div *ngIf="!isSelect">
+    <div class="alert alert-danger text-center mt-2" role="alert">
+        Necesitas iniciar sesion para aregar a lista de reproduccion!!
+    </div>
+    <mat-divider class="mb-4"></mat-divider>
+    <div class="row justify-content-center align-items-center">
+        <a class="btn btn-primary mr-3 text-white" (click)="isSelect = true; isLogin = true">Iniciar Sesion</a>
+        <a class="btn btn-primary text-white" (click)="isSelect = true; isSignin = true">Registrarse</a>
+    </div>
+</div>
 
-    <a href="https://docs.google.com/" mat-list-item (click)="openLink($event)">
-        <span mat-line>Google Docs</span>
-        <span mat-line>Embed in a document</span>
-    </a>
 
-    <a href="https://plus.google.com/" mat-list-item (click)="openLink($event)">
-        <span mat-line>Google Plus</span>
-        <span mat-line>Share with your friends</span>
-    </a>
 
-    <a href="https://hangouts.google.com/" mat-list-item (click)="openLink($event)">
-        <span mat-line>Google Hangouts</span>
-        <span mat-line>Show to your coworkers</span>
-    </a>
-</mat-nav-list>
+<form [formGroup]="formGroup" class="form-container" *ngIf="isLogin || isSignin && isSelect">
+    <h3 *ngIf="isLogin" class="text-center">Iniciar Sesion</h3>
+    <h3 *ngIf="isSignin" class="text-center">Registrarse</h3>
+    <button mat-flat-button class="button-back" (click)="isSelect = false; isLogin = false; isSignin = false;">
+            <mat-icon aria-label="Example icon-button with a heart icon" class="icon-back">chevron_left</mat-icon>
+        </button>
+    <mat-form-field>
+        <input matInput placeholder="Ingresa el email" formControlName="email" required>
+        <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Ingresar password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+    <button mat-raised-button color="primary" class="mt-4" *ngIf="isLogin" (click)="login()">Iniciar Sesion</button>
+    <button mat-raised-button color="primary" class="mt-4" *ngIf="isSignin">Registrarse</button>
+</form>

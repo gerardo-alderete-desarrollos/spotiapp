@@ -1,17 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { HomeService } from '../../home/home.service';
 
-@Component({
+@Component({ 
   selector: 'app-modal-bottom',
   templateUrl: './modal-bottom.component.html',
   styleUrls: ['./modal-bottom.component.css']
 })
 export class ModalBottomComponent  {
+  public formGroup: FormGroup;
+  hide = true;
 
-  constructor(private bottomSheetRef: MatBottomSheetRef<any>) {}
+  isLogin = false;
+  isSignin = false;
+  isSelect = false;
+
+  constructor(private bottomSheetRef: MatBottomSheetRef<any>,
+    fb: FormBuilder,
+    private homeService: HomeService) {
+      this.formGroup = fb.group(
+        {
+        'email' : ['', Validators.required ],
+        'password': ['', Validators.required ]
+      });
+    }
 
   openLink(event: MouseEvent): void {
     this.bottomSheetRef.dismiss();
     event.preventDefault();
   }
+  login() {
+    const { email , password } = this.formGroup.value;
+    console.log('login');
+    console.log({ email , password });
+    this.homeService.auth( email, password);
+    this.bottomSheetRef.dismiss();
+
+  }
+  enter() {
+    console.log('enter');
+  }
+
+
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HomeService } from '../home/home.service';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { HomeService } from '../../home/home.service';
+import { UtilitiesService } from '../utilities.service';
 
 @Component({
   selector: 'app-artista',
@@ -16,22 +17,27 @@ export class ArtistaComponent implements OnInit {
   mensajeError: string;
   defaultImage = '../../assets/img/loader.gif';
 
+  lastRoute = '';
+
   constructor(private activatedRoute: ActivatedRoute,
-    private homeService: HomeService) {
+    private router: Router,
+    private homeService: HomeService,
+    private utilities: UtilitiesService) {
 
     this.loading = true;
     this.getToken();
     this.activatedRoute.params.subscribe(
       paramas => {
-        console.log(paramas);
         this.getArtista(paramas.id);
         this.getTopTracks(paramas.id);
       }
     );
 
+    this.lastRoute = this.utilities.getLastRout();
+    console.log('lastRoute', this.lastRoute);
+
     this.homeService.handleError.subscribe(
       ( response: any ) => {
-        console.log('response', response);
         if ( response.error ) {
           this.mensajeError = response.message.message ? response.message.message : response.message;
           this.error = true;

@@ -29,6 +29,8 @@ export class HomeComponent implements OnInit {
     );
     this.getData();
 
+  
+
 
 
    }
@@ -46,6 +48,8 @@ export class HomeComponent implements OnInit {
       this.nuevasCanciones = responseNewReleases;
       this.loading = false;
     }
+
+    await this.homeService.getAlbums();
   }
 
 }

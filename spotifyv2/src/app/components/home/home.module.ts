@@ -7,13 +7,20 @@ import { PipesModule } from '../../pipes/pipes.module';
 import { SharedModule } from '../shared/shared.module';
 import { HOME_ROUTES } from './home.routing';
 import { TopArtistsComponent } from './top-artists/top-artists.component';
+import { ListaReproduccionComponent } from './lista-reproduccion/lista-reproduccion.component';
+import { AlbumsComponent } from './lista-albums/albums.component';
+import { ArtistComponent } from './lista-artistas/artist.component';
+
 
 
 
 @NgModule({
     declarations: [
         HomeComponent,
-        TopArtistsComponent
+        TopArtistsComponent,
+        ListaReproduccionComponent,
+        AlbumsComponent,
+        ArtistComponent,
     ],
     imports: [
         RouterModule.forChild(HOME_ROUTES),
@@ -22,6 +29,14 @@ import { TopArtistsComponent } from './top-artists/top-artists.component';
         PipesModule,
         SharedModule
     ],
-    exports: [RouterModule, HomeComponent]
+    exports: [
+        RouterModule,
+        HomeComponent,
+         HomeComponent,
+        TopArtistsComponent,
+        ListaReproduccionComponent,
+        AlbumsComponent,
+        ArtistComponent,
+    ]
 })
 export class HomeModule { }

@@ -1,12 +1,29 @@
 <div class="m-3 nav-home-fixed mr-5">
     <div class="row justify-content-end mb-3">
-        <a class="mr-2" mat-fab routerLink="." color="primary" [routerLink]="['/home/top']" routerLinkActive="router-link-active">Top</a>
-        <a mat-fab routerLink="." color="warn">Other</a>
+        <a class="mr-2" mat-fab color="primary" [routerLink]="['/home/top']" routerLinkActive="active" matTooltip="Mas populares">
+            <mat-icon>
+                new_releases
+            </mat-icon>
+        </a>
+        <a class="mr-2" mat-fab color="warn" [routerLink]="['/home/lista-reproduccion']" routerLinkActive="active" matTooltip="Listas de reproduccion">
+            <mat-icon>
+                list
+            </mat-icon>
+        </a>
+        <a class="mr-2" mat-fab color="accent" [routerLink]="['/home/lista-albums']" routerLinkActive="active" matTooltip="Albums favoritos">
+            <mat-icon>
+                album
+            </mat-icon>
+        </a>
+        <a class="mr-2" mat-fab color="white" [routerLink]="['/home/lista-artistas']" routerLinkActive="active" matTooltip="Artistas favoritos">
+            <mat-icon>
+                art_track
+            </mat-icon>
+        </a>
     </div>
     <div>
-        <form [formGroup]="formGroup" novalidate class="pt-3 px-4 white">
-
-            <mat-form-field>
+        <form [formGroup]="formGroup" novalidate class="pt-3 px-4 white width-form-top">
+            <mat-form-field class="width-select-top">
                 <mat-label>Cantidad a mostrar</mat-label>
                 <mat-select formControlName="limits" (selectionChange)="seleccionado($event)">
                     <mat-option *ngFor="let limit of limits" [value]="limit.value">

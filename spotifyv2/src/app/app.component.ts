@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { HomeService } from './components/home/home.service';
+import { UtilitiesService } from './components/shared/utilities.service';
 
 @Component({
   selector: 'app-root',
@@ -19,23 +20,24 @@ export class AppComponent {
 
   constructor(
     private homeService: HomeService,
-    private router: Router
+    private router: Router,
+    private utilities: UtilitiesService
     ) {
       this.loading = true;
       this.error = false;
     router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
-        this.activarNavMenu(event.url);
         console.log(event.url);
+        this.activarNavMenu(event.url);
     }
   });
 
   this.homeService.handleError.subscribe(
     ( response: any ) => {
-      console.log({response})
       if ( response.error ) {
         this.mensajeError = response.message.message ? response.message.message : response.message;
         this.error = true;
+        this.loading = false;
       } else {
         this.error = false;
         this.loading = false;
@@ -45,7 +47,6 @@ export class AppComponent {
 
   this.homeService.loading.subscribe(
     isLoading => {
-      console.log({isLoading});
       this.loading = isLoading;
     });
 }
@@ -54,8 +55,10 @@ activarNavMenu( path: string ) {
 
   this.restablecerOptions();
   if ( path.includes('home') ) {
+    this.utilities.setLastRout('/home');
     this.isHome = true;
   } else if ( path.includes('search') ) {
+    this.utilities.setLastRout('/search');
     this.isSearch = true;
   } else {
     this.isNoNavBar = true;

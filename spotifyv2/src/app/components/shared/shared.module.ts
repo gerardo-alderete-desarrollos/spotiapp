@@ -20,7 +20,7 @@ import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
     TarjetasComponent,
     NavbarHomeComponent,
     ModalBottomComponent,
-    ModalDialogComponent
+    ModalDialogComponent,
   ],
   imports: [
     MaterialModule,
@@ -31,15 +31,13 @@ import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
     ReactiveFormsModule,
     LazyLoadImageModule.forRoot({
       preset: intersectionObserverPreset // <-- tell LazyLoadImage that you want to use IntersectionObserver
-    })
-
+    }),
   ],
   exports: [
     LoadingComponent,
     NavbarComponent,
     TarjetasComponent,
-    NavbarHomeComponent
-
+    NavbarHomeComponent,
   ],
   entryComponents: [
     ModalBottomComponent,

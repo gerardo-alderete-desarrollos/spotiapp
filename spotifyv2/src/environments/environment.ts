@@ -12,6 +12,11 @@ export const environment = {
     artist: 'artists/',
     top_tracks: '/top-tracks?country=us'
   },
+  urls_back: {
+    base: 'http://localhost:3000/',
+    login: 'login',
+    token: 'token'
+  },
   credentials: {
     client_id: 'd6b55734aa3f4b49af89ae8023b6c69e',
     client_secret: '4659ca881ead4eed81c45197f071db34'

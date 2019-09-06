@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { SearchComponent } from './components/search/search.component';
-import { ArtistaComponent } from './components/artista/artista.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -15,6 +14,7 @@ import { MaterialModule } from './material/material.module';
 import { SharedModule } from './components/shared/shared.module';
 import { PipesModule } from './pipes/pipes.module';
 import { LazyLoadImageModule, intersectionObserverPreset } from 'ng-lazyload-image';
+import { ArtistaComponent } from './components/shared/artista/artista.component';
 
  
 @NgModule({

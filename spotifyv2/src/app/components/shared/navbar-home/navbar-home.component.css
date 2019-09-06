@@ -2,6 +2,21 @@
     position: fixed;
     top: 61px;
     right: 0px;
-    z-index: 100;
+    z-index: 1;
     margin-bottom: 100px !important;
+}
+
+@media screen and ( max-width: 1397px) {
+    .width-select-top {
+        width: 107px !important;
+    }
+    .width-form-top {
+        right: -8px;
+        position: absolute;
+        width: 155px;
+    }
+}
+
+.example-tooltip-red {
+    background: #b71c1c !important;
 }

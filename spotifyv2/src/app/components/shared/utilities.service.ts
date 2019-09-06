@@ -6,10 +6,48 @@ import { Subject } from 'rxjs';
 })
 export class UtilitiesService {
   limit = new Subject<any>();
+  isLogin = new Subject<any>();
 
   constructor() { }
 
   sendLimits( limit: number ) {
     this.limit.next({limit: limit, show: false  });
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
+  setToken( token: string ) {
+    localStorage.setItem('token', token);
+  }
+  getCurrentUser() {
+
+    console.log('currentUser', localStorage.getItem('currentUser'));
+    if ( localStorage.getItem('currentUser')) {
+
+      return JSON.parse(localStorage.getItem('currentUser'));
+    }
+    return false;
+  }
+  setCurrentUser( currentUser: string ) {
+    console.log({currentUser});
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+  }
+
+  setLastRout( route: string ) {
+    localStorage.setItem('lastRoute', route);
+  }
+  getLastRout() {
+    return localStorage.getItem('lastRoute');
+  }
+  
+  login() {
+    this.isLogin.next(true);
+  }
+
+  logout() {
+    this.isLogin.next(false);
+    this.setCurrentUser('');
+    this.setToken('');
   }
 }
