@@ -1,11 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalBottomComponent } from '../modal-bottom/modal-bottom.component';
-import { ModalDialogComponent } from '../modal-dialog/modal-dialog.component';
 import { UtilitiesService } from '../utilities.service';
 import { HomeService } from '../../home/home.service';
 import { ModalControllerService } from '../modal-controller.service';
 import { SnackBarErrorComponent } from '../snack-bar-error/snack-bar-error.component';
+import { ModalCancionDetalles } from '../modal-dialog/modal-cancion-detalles.component';
+import { ModalListaReproduccionComponent } from '../modal-dialog/modal-lista-reproduccion.component';
 
 @Component({
   selector: 'app-tarjetas',
@@ -14,11 +15,13 @@ import { SnackBarErrorComponent } from '../snack-bar-error/snack-bar-error.compo
 })
 export class TarjetasComponent implements OnInit {
   defaultImage = '../../assets/img/loader.gif';
+  listaReproduccion;
 
   @Input() items: any[] = [];
   constructor(private router: Router,
     private modalController: ModalControllerService,
-    private utilities: UtilitiesService) { }
+    private utilities: UtilitiesService,
+    private homeService: HomeService) { }
 
   ngOnInit() {
   }
@@ -37,12 +40,12 @@ export class TarjetasComponent implements OnInit {
 
   } 
 
-  agregarListaReporduccion(item) {
+  async agregarListaReporduccion(item) {
     if ( this.utilities.getToken() && this.utilities.getToken() !== '' ) {
-      // Aqui ira el servico para agregar a lista de reproduccion
-      console.log('si hay token');
+      this.listaReproduccion = await this.homeService.getListarReproduccion();
+      // console.log('lisaReproduccion', this.listaReproduccion);
+      this.modalController.openModalDialog(ModalListaReproduccionComponent, this.listaReproduccion);
     } else {
-      // this.homeService.auth('ge_call@hotmail.com', 'Callofduty92');
       this.modalController.openModalBottom(ModalBottomComponent);
       console.log('no hay token');
 
@@ -51,8 +54,7 @@ export class TarjetasComponent implements OnInit {
 
   }
   abrirDetalles(item) {
-    this.modalController.openModalDialog(ModalDialogComponent, item);
-    this.modalController.openSnackBar(SnackBarErrorComponent, 'Mensaje');
+    this.modalController.openModalDialog(ModalCancionDetalles, item);
   }
 
 }

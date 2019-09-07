@@ -16,7 +16,9 @@ export const environment = {
     base: 'http://localhost:3000/',
     login: 'login',
     token: 'token',
-    usuario: 'usuario'
+    usuario: 'usuario',
+    lista_reproduccion: 'lista-reproduccion',
+    lista_reproduccion_create: 'lista-reproduccion/create'
   },
   credentials: {
     client_id: 'd6b55734aa3f4b49af89ae8023b6c69e',

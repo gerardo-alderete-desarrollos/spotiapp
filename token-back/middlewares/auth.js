@@ -7,11 +7,9 @@ var SEED = require('../config/config').SEED;
 //  Verificar token
 // ==========================================
 exports.verificaToken = (req, res, next) => {
-
     var token = req.body.token;
 
     jwt.verify(token, SEED, (err, decoded) => {
-
         if (err) {
             return res.status(401).json({
                 ok: false,
@@ -19,12 +17,7 @@ exports.verificaToken = (req, res, next) => {
                 errors: err
             });
         }
-
         req.usuario = decoded.usuario;
-
         next();
-
-
     });
-
 }

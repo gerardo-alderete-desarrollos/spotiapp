@@ -17,6 +17,7 @@ app.use(cors());
 var appRoutes = require('./routes/app');
 var usuarioRoutes = require('./routes/usuario');
 var loginRoutes = require('./routes/login');
+var listaReproduccionRoutes = require('./routes/lista-reproduccion');
 
 // Conexión a la base de datos
 mongoose.connection.openUri('mongodb://localhost:27017/spotiAppDB', { useNewUrlParser: true }, (err, res) => {
@@ -34,6 +35,7 @@ mongoose.connection.openUri('mongodb://localhost:27017/spotiAppDB', { useNewUrlP
 // Rutas
 app.use('/usuario', usuarioRoutes);
 app.use('/login', loginRoutes);
+app.use('/lista-reproduccion', listaReproduccionRoutes);
 app.use('/', appRoutes);
 
 app.post('/token', (req, res, next) => {

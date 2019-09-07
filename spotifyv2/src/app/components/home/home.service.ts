@@ -22,6 +22,7 @@ import { SnackBarSuccesComponent } from '../shared/snack-bar-succes/snack-bar-su
  const token = environment.urls_back.token;
  const login = environment.urls_back.login;
  const usuario = environment.urls_back.usuario;
+ const listaReproduccion = environment.urls_back.lista_reproduccion;
 
 
 @Injectable({
@@ -238,5 +239,32 @@ export class HomeService {
  sendIsLoading( isLoading: boolean ) {
   this.loading.next(isLoading);
  }
+
+ async getListarReproduccion() {
+   const body = {
+     token : this.utilities.getToken()
+   };
+
+  return  new Promise( (res, rej) => {
+    this.sendIsLoading(true);
+    this.modalController.closeSnackBar();
+    this.http.post( baseBack + listaReproduccion, body )
+    .pipe(
+      map( ( data: any ) => data.listaReproduccion )
+    )
+    .subscribe(
+      ( data: any ) => {
+       this.sendIsLoading(false);
+       res(data);
+      },
+      error => {
+        this.sendIsLoading(false);
+        this.modalController.openSnackBar(SnackBarErrorComponent, error.error.mensaje);
+       rej(error);
+      }
+    );
+   });
+ }
+
 
 }

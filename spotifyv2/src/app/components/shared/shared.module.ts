@@ -10,9 +10,10 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LazyLoadImageModule, intersectionObserverPreset } from 'ng-lazyload-image';
 import { ModalBottomComponent } from './modal-bottom/modal-bottom.component';
-import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
 import { SnackBarErrorComponent } from './snack-bar-error/snack-bar-error.component';
 import { SnackBarSuccesComponent } from './snack-bar-succes/snack-bar-succes.component';
+import { ModalCancionDetalles } from './modal-dialog/modal-cancion-detalles.component';
+import { ModalListaReproduccionComponent } from './modal-dialog/modal-lista-reproduccion.component';
 
 
 @NgModule({
@@ -22,9 +23,10 @@ import { SnackBarSuccesComponent } from './snack-bar-succes/snack-bar-succes.com
     TarjetasComponent,
     NavbarHomeComponent,
     ModalBottomComponent,
-    ModalDialogComponent,
+    ModalCancionDetalles,
     SnackBarErrorComponent,
     SnackBarSuccesComponent,
+    ModalListaReproduccionComponent,
   ],
   imports: [
     MaterialModule,
@@ -43,15 +45,17 @@ import { SnackBarSuccesComponent } from './snack-bar-succes/snack-bar-succes.com
     TarjetasComponent,
     NavbarHomeComponent,
     ModalBottomComponent,
-    ModalDialogComponent,
     SnackBarErrorComponent,
     SnackBarSuccesComponent,
+    ModalCancionDetalles,
+    ModalListaReproduccionComponent,
   ],
   entryComponents: [
     ModalBottomComponent,
-    ModalDialogComponent,
     SnackBarErrorComponent,
-    SnackBarSuccesComponent
+    SnackBarSuccesComponent,
+    ModalCancionDetalles,
+    ModalListaReproduccionComponent
   ]
 })
 export class SharedModule { }
